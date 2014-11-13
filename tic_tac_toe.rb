@@ -25,7 +25,8 @@ def initialize_array(arr)
 end
 
 def check_win(arr)
-  win_conditions = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]
+  #win_conditions = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]
+  win_conditions = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [3,5,8], [0,4,8], [2,4,6]]
   win_conditions.each do |condition|
     return 1 if arr.values_at(*condition).count('X') == 3
     return 2 if arr.values_at(*condition).count('O') == 3
@@ -43,11 +44,9 @@ puts "Lets play Tic Tac Toe!"
 playing = true
 arr = []
 initialize_array(arr)
+print_grid(arr)
 
 begin
-
-  print_grid(arr)
-
   puts "Choose a position (from 1 to 9 ) to place a piece"
   user_position = gets.chomp
 
@@ -77,7 +76,9 @@ begin
     end while arr[computer_position - 1] != " "
   end
 
-  arr[computer_position.to_i - 1] = "O" #user input will print X in grid
+  arr[computer_position.to_i - 1] = "O" #computer input will print O in grid
+
+  puts "Now it's Computer's turn:"
 
   print_grid(arr)
 
